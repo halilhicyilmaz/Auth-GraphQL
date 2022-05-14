@@ -1,11 +1,12 @@
 const graphql = require('graphql')
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql;
+const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLList } = graphql;
 
-const userType = new GraphQLObjectType({
+const UserType = new GraphQLObjectType({
     name: 'UserType',
     fields: {
+        id: { type: GraphQLID },
         email: { type: GraphQLString }
     }
 })
 
-module.exports = userType
+module.exports = UserType
