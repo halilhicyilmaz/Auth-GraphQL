@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from "@apollo/client"
 import { Button, Grid, Typography } from "@mui/material"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import currentUser from '../queries/currentUser'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from "../utils/constants"
@@ -32,7 +32,9 @@ const Header = () => {
             onCompleted: (data) => {
                 setUser(data.user)
             }
-        })
+        }
+    )
+
 
     const Buttons = () => {
         if (loading) { return <div /> }

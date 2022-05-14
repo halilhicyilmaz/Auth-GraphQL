@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import reportWebVitals from '../reportWebVitals';
 import AppRouter from './router/AppRouter';
+import { Provider } from 'react-redux'
+import store from './redux/store'
+
 
 const defaultOptions = {
   watchQuery: {
@@ -26,9 +29,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <AppRouter />
-    </ApolloProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <AppRouter />
+      </ApolloProvider>
+    </Provider>
   </React.StrictMode>
 
 );
