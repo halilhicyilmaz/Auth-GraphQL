@@ -1,10 +1,21 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react"
+import { useDispatch } from "react-redux";
 import AuthForm from "../components/AuthForm"
 import signUp from "../queries/signUp";
+import { setCurrentUser } from "../redux/currentUser";
 
-const SignIn = () => {
-    const [SignUpFunction] = useMutation(signUp);
+const SignUp = () => {
+    const dispatch = useDispatch()
+
+    const [SignUpFunction] = useMutation(signUp,
+        {
+            onCompleted: (data) => {
+                dispatch(setCurrentUser(
+                    data.signUp
+                ))
+            }
+        });
     const [error, setError] = useState(false)
 
     const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -26,4 +37,4 @@ const SignIn = () => {
 
 }
 
-export default SignIn
+export default SignUp

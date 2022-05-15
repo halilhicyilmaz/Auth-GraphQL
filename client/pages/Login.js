@@ -17,7 +17,6 @@ const Login = () => {
         if (email.match(mailFormat)) {
             try {
                 const loggedIn = await LoginFunction({ variables: { email, password } },)
-                // console.log(loggedIn)
             } catch (error) {
                 setPassError(true)
                 setEmailError(true)
