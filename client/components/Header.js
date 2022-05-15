@@ -5,6 +5,8 @@ import currentUser from '../queries/currentUser'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from "../utils/constants"
 import logOut from "../queries/logOut"
+import { useDispatch, useSelector } from "react-redux"
+import { setCurrentUser } from "../redux/currentUser"
 
 
 const Header = () => {
@@ -19,18 +21,22 @@ const Header = () => {
     }
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
-    const [user, setUser] = useState('')
+    const user = useSelector((state) => state.currentUser);
 
     const [LogOut] = useMutation(logOut, {
         onCompleted: (data) => {
-            setUser('')
+            dispatch(setCurrentUser(""))
         }
     });
+
     const { loading, error, data, refetch } = useQuery(currentUser
         , {
             onCompleted: (data) => {
-                setUser(data.user)
+                dispatch(setCurrentUser(
+                    data.user
+                ))
             }
         }
     )

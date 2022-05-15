@@ -4,6 +4,8 @@ import Login from "../pages/Login";
 import SignIn from "../pages/SignIn";
 import { ROUTES } from "../utils/constants";
 import PublicRoute from "./PublicRoute";
+import Home from "../pages/Home"
+import ProtectedRoute from "./ProtectedRoute";
 
 
 const AppRouter = () => {
@@ -11,7 +13,8 @@ const AppRouter = () => {
 
     return <HashRouter >
         <Routes>
-            <Route exact path={ROUTES.INDEX} element={<PublicRoute />} />
+            <Route exact path={ROUTES.INDEX} element={<ProtectedRoute element={Home} />} />
+            <Route exact path={ROUTES.HOME} element={<ProtectedRoute element={Home} />} />
             <Route exact path={ROUTES.SIGNUP} element={<PublicRoute element={SignIn} />} />
             <Route exact path={ROUTES.LOGIN} element={<PublicRoute element={Login} />} />
             <Route
